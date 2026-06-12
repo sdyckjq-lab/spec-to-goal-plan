@@ -1,0 +1,35 @@
+{
+  "skill_name": "spec-to-goal-plan",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我已经写完 docs/spark/2026-06-10-editor-design.md 这个 spec 了，帮我按 /goal 流程拆 phase，写 phased plan 和 progress 文件，先给方案别直接写。",
+      "expected_output": "Triggers the skill, reviews the spec readiness first, maps implementation surfaces, designs a phased execution ledger with 3-5 phases, 2-5 verifiable work units per phase, plan/progress paths, hard acceptance criteria, verification plan, failure modes, decision log, and a /goal starter shape without implementing code or asking for user confirmation between verified phases.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "基于这个设计文档，把它变成可执行的 goal plan。要求不要 MVP 缩水，每个 phase 要有验收条件。",
+      "expected_output": "Triggers the skill, asks for the design document if absent or reads it if provided, then produces spec review, implementation map, engineering review additions, execution ledger choice, phase breakdown by verifiable work units, plan/progress proposal, and /goal starter that advances automatically between verified phases.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我准备逆向这个代码库，先用脚本做语法解析，把完整 list 整理成 json，然后让 /goal 分批处理，每批处理完更新 json。帮我把这个流程设计进 plan。",
+      "expected_output": "Triggers the skill, chooses a checklist/JSON ledger shape, proposes an inventory-generation script or parser, 10-20 item batch sizing unless justified, ledger fields, per-batch verification, commit/update rules, reusable code inspection, decision logging, and a /goal starter that reads, updates, and advances the ledger each turn without phase-boundary confirmation.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我还没想清楚产品方向，先跟我脑暴一下这个 agent 工作区怎么设计。",
+      "expected_output": "Does not trigger this skill as the primary workflow; this is pre-spec brainstorming, not spec-to-goal conversion.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "按 docs/superpowers/plans/xxx-phased-plan.md 开始实现 phase 1。",
+      "expected_output": "Does not trigger this skill as the primary workflow; this is execution against an existing plan, not plan generation from a finished spec.",
+      "files": []
+    }
+  ]
+}
