@@ -1,32 +1,41 @@
 # Spec To Goal Plan
 
-Spec To Goal Plan is a local Codex/agent Skill that turns a finished spec or design document into an engineering-quality execution plan.
+Spec To Goal Plan is a local Codex/agent Skill that turns a finished spec or design document into a right-sized execution plan.
 
-It is meant for the moment after the direction is already decided, but before implementation starts. The Skill reviews whether the spec is executable, maps the implementation surface, creates a phased plan or checklist ledger, defines hard acceptance criteria, and ends with a copy-ready `/goal` starter prompt.
+It is meant for the moment after the direction is already decided, but before implementation starts. The Skill reviews whether the spec is executable, sizes the task (small tasks get a flat checklist instead of full phases), maps the implementation surface, defines hard acceptance criteria and commit rules, and ends with a copy-ready `/goal` starter prompt.
 
 ## What This Skill Produces
 
 - Spec readiness review
+- Task sizing (S / M / L) with a one-line reason
 - Implementation surface map
-- Engineering review additions
-- Phased execution plan or checklist/JSON ledger
-- Progress file shape for long-running `/goal` work
-- Hard acceptance criteria
-- Verification and eval plan
-- Decision log and drift guard
+- Phased execution plan, flat checklist, or batch JSON ledger
+- Progress file with status-flip-only update rules
+- Hard acceptance criteria and verification plan
+- Git branch and commit rules for autonomous execution
 - Copy-ready `/goal` starter prompt
+
+## Requirements
+
+- Codex CLI >= 0.133 (goal mode enabled by default since that release).
+- `/goal` only works in saved sessions; ephemeral sessions cannot hold goals.
+- Plan mode suspends goal continuation; run the ledger in normal mode.
+- A goal objective is limited to 4,000 characters; the generated starter points at the plan file instead of embedding it.
 
 ## Repository Layout
 
 ```text
 .
-├── SKILL.md              # Main Skill instructions and trigger metadata
+├── SKILL.md                      # Main Skill instructions and trigger metadata
 ├── agents/
-│   └── openai.yaml       # Display metadata and default prompt
+│   └── openai.yaml               # Codex interface metadata (display name, default prompt)
+├── references/
+│   ├── phased-plan.md            # L-level playbook: phases, acceptance, progress.json
+│   └── checklist-ledger.md       # M-level flat checklist and batch inventory ledger
 ├── evals/
-│   └── evals.json        # Representative trigger and non-trigger cases
+│   └── evals.json                # Representative trigger, routing, and non-trigger cases
 └── scripts/
-    └── validate.sh       # Local format checks
+    └── validate.sh               # Local format checks
 ```
 
 ## Install Locally
@@ -56,7 +65,7 @@ If a Skill with the same name already exists, remove or rename the old copy firs
 
 ## When Not To Use It
 
-This Skill is not for brainstorming, writing the original spec, ordinary task lists, code review, or executing an existing plan. It is specifically for converting a finished spec/design into a durable `/goal` execution plan.
+This Skill is not for brainstorming, writing the original spec, ordinary task lists, code review, or executing an existing plan. For very small changes it will recommend direct execution instead of generating a plan.
 
 ## Validate Changes
 
@@ -66,12 +75,12 @@ Run this before committing updates:
 ./scripts/validate.sh
 ```
 
-The validation checks the Skill frontmatter, agent metadata, and eval JSON.
+The validation checks the Skill frontmatter (including length limits), agent metadata nesting, reference files, and eval JSON.
 
 ## Maintenance Notes
 
-- Keep `SKILL.md` as the source of truth for behavior.
-- Update `evals/evals.json` whenever trigger behavior changes.
+- Keep `SKILL.md` as the source of truth for behavior; ledger templates live in `references/`.
+- Update `evals/evals.json` whenever trigger or routing behavior changes.
 - Keep usage examples aligned with the trigger description.
 - Prefer clear, durable instructions over context-dependent phrasing.
 

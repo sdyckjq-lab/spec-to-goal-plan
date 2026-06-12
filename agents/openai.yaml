@@ -1,3 +1,4 @@
-display_name: Spec To Goal Plan
-short_description: Turn a finished spec into an engineering plan, execution ledger, and /goal starter.
-default_prompt: "基于这个已经写完的 spec，先 review 是否足够执行，再补实现映射、工程审查、验收标准、验证计划、决策记录，然后生成 phased plan 或 checklist/progress 文件，以及 /goal 启动提示词。"
+interface:
+  display_name: Spec To Goal Plan
+  short_description: Turn a finished spec into a /goal-ready execution plan.
+  default_prompt: "Use $spec-to-goal-plan to review my finished spec, size the task, and produce the execution plan, progress ledger, and /goal starter prompt."
