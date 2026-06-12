@@ -33,7 +33,7 @@ Hard: design.md, plan.md, and the progress file agree on phase goals, boundaries
 
 ## Plan Document Sections
 
-The plan document should include: goal, source documents, execution rules, `/goal` protocol, progress file path, implementation surface map, architecture or data-flow diagram when useful, phase list with per-phase tasks/acceptance/surfaces, verification commands, test and eval plan, what already exists, not in scope, failure modes and residual risk, decision log, and commit rules.
+The plan document should include: goal, source documents, execution rules, `/goal` protocol, progress file path, implementation surface map, architecture or data-flow diagram when useful, phase list with per-phase tasks/acceptance/surfaces, a baseline smoke command, verification commands, test and eval plan, what already exists, not in scope, failure modes and residual risk, decision log, and commit rules.
 
 ## Progress File Template
 
@@ -47,6 +47,7 @@ The plan document should include: goal, source documents, execution rules, `/goa
   },
   "execution_rules": {
     "branch": "<dedicated-branch-name>",
+    "smoke_check": "<command that proves the build/tests are not broken>",
     "commit_each_verified_task": true,
     "no_commit_on_failed_verification": true,
     "never_push_merge_or_amend": true,

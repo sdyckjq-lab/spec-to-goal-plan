@@ -7,7 +7,7 @@
 - Add S/M/L task sizing: small tasks get a direct-execution recommendation, medium tasks get a flat checklist, large tasks get the full phased plan.
 - Add git rules for autonomous execution: dedicated branch with clean-start commit, commit per verified work unit, never push/merge/amend, no auto-commit for small tasks.
 - Trim the `/goal` starter to the ledger protocol only; the official goal continuation prompt already enforces completion auditing and goal fidelity.
-- Add status-flip-only constraints and an opening smoke-check ritual to the progress file rules.
+- Constrain progress file updates to status/evidence/log fields and add an opening smoke-check step to the `/goal` starter.
 - Split ledger templates into `references/phased-plan.md` and `references/checklist-ledger.md`, loaded based on the sizing route.
 - Document `/goal` prerequisites (Codex >= 0.133, saved sessions, 4,000-character objective limit).
 - Extend `evals/evals.json` with routing cases and strengthen `scripts/validate.sh` (length limits, interface nesting, reference files).

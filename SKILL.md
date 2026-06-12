@@ -123,7 +123,7 @@ Each turn:
 1. Read <progress-path>, then the current task or next batch in <plan-path>.
 2. Run `git log --oneline -15` and the smoke check named in the plan; repair a broken state before starting new work.
 3. Work only on the current work unit or batch.
-4. After verification passes: update <progress-path> (flip status fields only), commit that unit, record the commit hash. Never commit on failed verification. Never push, merge, or amend.
+4. After verification passes: update <progress-path> (status, evidence, and log fields only), commit that unit, record the commit hash. Never commit on failed verification. Never push, merge, or amend.
 5. When a phase's acceptance checks all pass, record it and continue to the next phase without asking for approval.
 
 Done when every item in <plan-path> is complete, every acceptance check is proven, and <progress-path> records final status and residual risk.
